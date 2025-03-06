@@ -185,7 +185,7 @@ function onClose(callback) {
 function startAdapter(options) {
     options = options || {};
     Object.assign(options, {
-        name: 'mbus'
+        name: 'mbusw'
     });
     adapter = new utils.Adapter(options);
 

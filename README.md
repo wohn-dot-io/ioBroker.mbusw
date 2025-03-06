@@ -1,14 +1,14 @@
 ![Logo](admin/mbus.png)
-# ioBroker.mbus
+# ioBroker.mbusw
 ======================
 
-![Number of Installations (latest)](https://iobroker.live/badges/mbus-installed.svg)
-![Number of Installations (stable)](https://iobroker.live/badges/mbus-stable.svg)
-[![NPM version](https://img.shields.io/npm/v/iobroker.mbus.svg)](https://www.npmjs.com/package/iobroker.mbus)
+![Number of Installations (latest)](https://iobroker.live/badges/mbusw-installed.svg)
+![Number of Installations (stable)](https://iobroker.live/badges/mbusw-stable.svg)
+[![NPM version](https://img.shields.io/npm/v/iobroker.mbus.svg)](https://www.npmjs.com/package/iobroker.mbusw)
 
-![Test and Release](https://github.com/Apollon77/ioBroker.mbus/workflows/Test%20and%20Release/badge.svg)
-[![Translation status](https://weblate.iobroker.net/widgets/adapters/-/mbus/svg-badge.svg)](https://weblate.iobroker.net/engage/adapters/?utm_source=widget)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.mbus.svg)](https://www.npmjs.com/package/iobroker.mbus)
+![Test and Release](https://github.com/wohn-dot-io/ioBroker.mbusw/workflows/Test%20and%20Release/badge.svg)
+[![Translation status](https://weblate.iobroker.net/widgets/adapters/-/mbusw/svg-badge.svg)](https://weblate.iobroker.net/engage/adapters/?utm_source=widget)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.mbus.svg)](https://www.npmjs.com/package/iobroker.mbusw)
 
 **This adapter uses Sentry libraries to automatically report exceptions and code errors to the developers.** For more details and for information how to disable the error reporting see [Sentry-Plugin Documentation](https://github.com/ioBroker/plugin-sentry#plugin-sentry)! Sentry reporting is used starting with js-controller 3.0.
 
@@ -66,7 +66,7 @@ Best is to set the adapter to Debug log mode (Instances -> Expert mode -> Column
 * (Apollon77) Prevent crash case (Sentry IOBROKER-MBUS-F)
 
 ### 2.3.0 (2020-08-02)
-* (Apollon77) mbus library updated
+* (Apollon77) mbusw library updated
 
 ### 2.2.3 (2020-07-26)
 * (Apollon77) crash prevented (Sentry IOBROKER-MBUS-C)
