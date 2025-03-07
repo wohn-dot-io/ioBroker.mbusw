@@ -2,8 +2,8 @@
 # ioBroker.mbusw
 ======================
 
-![Number of Installations (latest)](https://iobroker.live/badges/mbusw-installed.svg)
-![Number of Installations (stable)](https://iobroker.live/badges/mbusw-stable.svg)
+![Number of Installations (latest)](https://iobroker.live/badges/mbus-installed.svg)
+![Number of Installations (stable)](https://iobroker.live/badges/mbus-stable.svg)
 [![NPM version](https://img.shields.io/npm/v/iobroker.mbus.svg)](https://www.npmjs.com/package/iobroker.mbusw)
 
 ![Test and Release](https://github.com/wohn-dot-io/ioBroker.mbusw/workflows/Test%20and%20Release/badge.svg)
