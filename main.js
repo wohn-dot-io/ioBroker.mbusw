@@ -849,6 +849,8 @@ function main() {
                 mBusDevices[deviceId].updateInterval = 0;
             }
 
+            mBusDevices[deviceId].linkedId = adapter.config.devices[i].linkedId;  // Wohnio custom
+
             adapter.log.info('Schedule initialization for M-Bus-ID ' + deviceId + ' with update interval ' + mBusDevices[deviceId].updateInterval);
             setTimeout(() => scheduleDeviceUpdate(deviceId), 500);
         }

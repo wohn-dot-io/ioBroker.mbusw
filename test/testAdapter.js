@@ -187,6 +187,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.native.devices = [
                 {
                     "id": "1",
+                    "linkedId": "",
                     "updateInterval": 60
                 },
                 {
@@ -194,6 +195,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
                 },
                 {
                     "id": "3",
+                    "linkedId": "",
                     "updateInterval": 0
                 }
             ];
