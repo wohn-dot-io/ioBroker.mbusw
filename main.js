@@ -343,7 +343,7 @@ function updateDevices() {
                 );
             }
 
-            adapter.log.info('M-Bus ID ' + deviceId + ' data: ' + JSON.stringify(data, null, 2));
+            adapter.log.debug('M-Bus ID ' + deviceId + ' data: ' + JSON.stringify(data, null, 2));
 
             initializeDeviceObjects(deviceId, data, () => {
                 if (!mBusDevices[deviceId]) {
@@ -507,7 +507,6 @@ function getCustomTopic(type) {
 }
 
 function initializeDeviceObjects(deviceId, data, callback) {
-    adapter.log.info(JSON.stringify(data));
     let neededStates = [];
     function createStates() {
         if (!neededStates.length) {
@@ -530,8 +529,11 @@ function initializeDeviceObjects(deviceId, data, callback) {
         // parse unit "Volume (100 m^3)" => Volume is name, 100 is factor, m3 is unit)
         let role = 'value';
 
+        let regType; // Wohnio custom
+
         if (m) {
             let type = m[1].trim();
+            regType = type; // Wohnio custom
             unit = m[2].trim();
             role = getRole(unit, type);
             let tmp = adjustUnit(unit, type, adapter.config.forcekWh);
@@ -559,7 +561,7 @@ function initializeDeviceObjects(deviceId, data, callback) {
                 unit: state.unit,
                 customConfigs: {
                     linkedId: mBusDevices[deviceId].linkedId, // Wohnio custom
-                    standardName: getCustomTopic(type), // Wohnio custom  -- NOTE: it does not work for all the cases !!
+                    standardName: getCustomTopic(regType), // Wohnio custom  -- NOTE: it does not work for all the cases !!
                     mqttEnabled: false, // Wohnio custom
                 },
             },
