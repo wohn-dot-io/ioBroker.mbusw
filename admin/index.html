@@ -205,6 +205,15 @@
             }
         });
         obj.devices = table2values('devices');
+
+        // Validate that each device has a linkedId Wohnio custom
+        for (var i = 0; i < obj.devices.length; i++) {
+            if (!obj.devices[i].linkedId || obj.devices[i].linkedId.trim() === '') {
+                showError(_('LinkedId is required for every device'));
+                return; // Abort save if validation fails.
+            }
+        }
+            
         callback(obj);
     }
 </script>
