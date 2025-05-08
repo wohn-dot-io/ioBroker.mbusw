@@ -144,8 +144,6 @@ function initSentry(callback) {
 }
 
 function setConnected(isConnected) {
-    adapter.log.debug('Init set connceted stat funct');
-
     if (connected !== isConnected) {
         connected = isConnected;
         adapter && adapter.setState('info.connection', connected, true, (err) => {
@@ -153,13 +151,11 @@ function setConnected(isConnected) {
             if (err && adapter && adapter.log) adapter.log.error('Can not update connected state: ' + err);
             else if (adapter && adapter.log) adapter.log.debug('connected set to ' + connected);
         });
-    }
 
-    adapter.log.debug('Wohnio debug' + JSON.stringify(mBusDevices));
-
-    for (let deviceId in mBusDevices) {
-
-        adapter.log.debug('Set connected state for device ' + deviceId + ' to ' + connected);
+        // Wohnio custom
+        for (let deviceId in mBusDevices) {
+            adapter.setState(mBusDevices[deviceId].deviceNamespace + '.info.connection', connected, true);
+        }
     }
 }
 
@@ -502,6 +498,7 @@ function getRole(unit, type) {
 }
 
 function getCustomTopic(type) {
+    adapter.log.debug('getCustomTopic: ' + type);
     switch (type) {
         case 'Energy':
             return 'total_energy_consumption';
