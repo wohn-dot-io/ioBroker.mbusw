@@ -496,7 +496,7 @@ function getRole(unit, type) {
     return 'value';
 }
 
-function getCustomTopic(type) {
+function checkforStandardName(type) {
     switch (type) {
         case 'Energy':
             return 'total_energy_consumption';
@@ -513,6 +513,25 @@ function getCustomTopic(type) {
     }
 
     return '';
+}
+
+// Wohnio custom
+function getCustomConfigs(linkedId, stateName, regysterType) {
+    if(stateName === "connection") {
+        return {
+            linkedId: linkedId,
+            standardName: 'current_status',
+            postTopicValue: 'device_status', 
+            mqttEnabled: true,
+            retained: true,
+        }
+    }
+
+    return {
+        linkedId: linkedId, 
+        standardName: checkforStandardName(regysterType), // -- NOTE: it does not work for all the cases !!
+        mqttEnabled: false,
+    }
 }
 
 function initializeDeviceObjects(deviceId, data, callback) {
@@ -568,11 +587,7 @@ function initializeDeviceObjects(deviceId, data, callback) {
                 read: true,
                 write: false,
                 unit: state.unit,
-                customConfigs: {
-                    linkedId: mBusDevices[deviceId].linkedId, // Wohnio custom
-                    standardName: getCustomTopic(regType), // Wohnio custom  -- NOTE: it does not work for all the cases !!
-                    mqttEnabled: false, // Wohnio custom
-                },
+                customConfigs: getCustomConfigs(mBusDevices[deviceId].linkedId, name, regType), // Wohnio custom
             },
             native: {
                 id: state.id,
