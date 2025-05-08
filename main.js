@@ -317,6 +317,7 @@ function updateDevices() {
         if (err) {
             if (mBusDevices[deviceId].deviceNamespace) {
                 adapter.setState(mBusDevices[deviceId].deviceNamespace + '.data.lastStatus', err, true);
+                adapter.setState(mBusDevices[deviceId].deviceNamespace + '.info.connection', false, true);
             }
             adapter.log.error('M-Bus ID ' + deviceId + ' connect err: ' + err);
             handleDeviceError(deviceId, updateDevices);
@@ -330,6 +331,7 @@ function updateDevices() {
                 adapter.log.warn('M-Bus ID ' + deviceId + ' err: ' + err);
                 if (mBusDevices[deviceId].deviceNamespace) {
                     adapter.setState(mBusDevices[deviceId].deviceNamespace + '.data.lastStatus', err, true);
+                    adapter.setState(mBusDevices[deviceId].deviceNamespace + '.info.connection', false, true);
                 }
                 return handleDeviceError(deviceId, () =>
                     finishDevice(deviceId, err => {
@@ -359,10 +361,12 @@ function updateDevices() {
                         }
                         if (err) {
                             adapter.setState(mBusDevices[deviceId].deviceNamespace + '.data.lastStatus', err, true);
+                            adapter.setState(mBusDevices[deviceId].deviceNamespace + '.info.connection', false, true);
                             adapter.log.error('M-Bus ID ' + deviceId + ' connect err: ' + err);
                             handleDeviceError(deviceId, updateDevices);
                         } else {
                             adapter.setState(mBusDevices[deviceId].deviceNamespace + '.data.lastStatus', 'ok', true);
+                            adapter.setState(mBusDevices[deviceId].deviceNamespace + '.info.connection', true, true);
                             setTimeout(updateDevices, 500);
                         }
                     });
@@ -441,6 +445,11 @@ function adjustUnit(unit, type, forcekWh) {
         } else if (unit === "J") {
             unit = "kWh";
             factor = factor / 3600000;
+        }
+
+        if (unit === "W") {
+            unit = "kW";
+            factor = factor / 1000;
         }
     }
 
@@ -676,6 +685,12 @@ function initializeDeviceObjects(deviceId, data, callback) {
                 neededStates.push({
                     id: '.data.lastStatus',
                     type: 'string',
+                    role: 'state'
+                });
+
+                neededStates.push({
+                    id: '.info.connection',
+                    type: 'boolean',
                     role: 'state'
                 });
 
